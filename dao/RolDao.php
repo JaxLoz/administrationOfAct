@@ -6,7 +6,6 @@ use model\Rol;
 use PDO;
 use util\DbConnection;
 
-
 require '.\model\Rol.php';
 
 class RolDao

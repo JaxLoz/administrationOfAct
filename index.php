@@ -6,10 +6,12 @@ use model\User;
 
 require ".\controller\UserController.php";
 require  ".\controller\RolController.php";
+require "controller/ActController.php";
 
 $routes = [
     "user" => "\\controller\\UserController",
-    "rol" => "\\controller\\RolController"
+    "rol" => "\\controller\\RolController",
+    "act" => "\\controller\\ActController"
 ];
 
 $request_uri = $_SERVER["REQUEST_URI"];

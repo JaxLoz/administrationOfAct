@@ -46,7 +46,7 @@ class ActController
         if($infoAct){
             $responseAct = [
                 'status' => "Informacion obtenida",
-                'rol' => $infoAct
+                'Acta' => $infoAct
             ];
 
             http_response_code(200);

@@ -7,11 +7,15 @@ use model\User;
 require ".\controller\UserController.php";
 require  ".\controller\RolController.php";
 require "controller/ActController.php";
+require  'controller/CommimentController.php';
+require  'controller/ActaAndCommitController.php';
 
 $routes = [
     "user" => "\\controller\\UserController",
     "rol" => "\\controller\\RolController",
-    "act" => "\\controller\\ActController"
+    "act" => "\\controller\\ActController",
+    'commiment' => '\\controller\\CommimentController',
+    'actOnCommit' => '\controller\ActaAndCommitController'
 ];
 
 $request_uri = $_SERVER["REQUEST_URI"];
@@ -37,20 +41,3 @@ if(isset($routes[$controllerName])){
         http_response_code(404);
     }
 }
-
-
-/*
-switch ($_SERVER["REQUEST_METHOD"]){
-    case "GET":
-        http_response_code(204);
-        break;
-
-    case "POST":
-
-        $datos = json_decode(file_get_contents("php://input"),true);
-        $user = new User(0, $datos["email"], $datos["password"]);
-        $userController = new UserController();
-        $userController->loginPost($user);
-
-}
-*/

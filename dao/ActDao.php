@@ -3,6 +3,7 @@
 namespace dao;
 
 use model\Act;
+use PDOException;
 use util\DbConnection;
 use PDO;
 
@@ -32,14 +33,17 @@ class ActDao
     
     public function getActId($id)
     {
-        $act = null;
-        $sql = "select * from act where id = :id";
-        $stm = $this->con->prepare($sql);
-        $stm->bindParam(':id', $id);
+        try{
+            $sql = "select * from act where id = :id";
+            $stm = $this->con->prepare($sql);
+            $stm->bindParam(':id', $id);
 
-        if($stm->execute()){
-            $act = $stm->fetch(PDO::FETCH_ASSOC);
-            return $act;
+            if($stm->execute()){
+                $act = $stm->fetch(PDO::FETCH_ASSOC);
+                return $act;
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
         }
 
         return $act;
@@ -107,7 +111,7 @@ class ActDao
     {
         $infoActs = null;
 
-        $sql = "select u.firstname, u.lastname, r.rol_name  a.id, a.progress from act as a inner join user as u on a.id_user = u.id inner join rol as r on u.id_rol = r.id where u.id = :id";
+        $sql = "select u.firstname, u.lastname, r.rol_name,  a.id, a.progress from act as a inner join s as u on a.id_user = u.id inner join rol as r on u.id_rol = r.id where u.id = :id";
         $stm = $this->con->prepare($sql);
         $stm->bindParam(':id', $idUser);
         $stm->execute();

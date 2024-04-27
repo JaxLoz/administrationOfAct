@@ -23,7 +23,7 @@ class UserController
 
     public function getUsersGet()
     {
-        $getUsers = $this->userDao->getUsers();
+        $getUsers = $this->userDao->getAll();
 
         if($getUsers){
 
@@ -180,7 +180,6 @@ class UserController
                 "id" => $infoUserDelete["id"],
                 "firtsname" => $infoUserDelete["firstname"],
                 "lastname" => $infoUserDelete["lastname"],
-                "email" => $infoUserDelete["email"],
                 "phone" => $infoUserDelete["phone"]
             ];
 

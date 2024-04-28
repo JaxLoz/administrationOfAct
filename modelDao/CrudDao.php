@@ -22,7 +22,7 @@ class CrudDao implements DaoInterface
         $this->nameTable = $nameTable;
     }
 
-    private function buidQuery(string $column, string $param)
+    private function buildQuery(string $column, string $param)
     {
         $data = null;
         $sql = "select * from $this->nameTable where $column = :param";
@@ -30,11 +30,13 @@ class CrudDao implements DaoInterface
             $stm = $this->con->prepare($sql);
             $stm->bindValue(":param", $param);
             $stm->execute();
-
+            if($stm->rowCount() > 0){
+                $data = $stm->fetch(PDO::FETCH_ASSOC);
+            }
         }catch (PDOException $e){
             echo $e->getMessage();
         }
-        return $stm;
+        return $data;
     }
 
 
@@ -109,7 +111,6 @@ class CrudDao implements DaoInterface
         $parameters = UtilesTools::buildParaters(count(UtilesTools::getKeys($data)));
 
         $sql = "insert into $this->nameTable ($columns) values ($parameters)";
-        echo $sql;
         try {
             $stm = $this->con->prepare($sql);
             foreach ($data as $value){
@@ -151,7 +152,7 @@ class CrudDao implements DaoInterface
     public function existRegister(string $column, string $param): bool
     {
         try{
-            if($this->buidQuery($column, $param)){
+            if($this->buildQuery($column, $param) !== null){
                return true;
             }
         }catch (PDOException $e){
@@ -163,15 +164,6 @@ class CrudDao implements DaoInterface
 
     public function getByParams(string $column, string $param)
     {
-        $data = null;
-        try {
-            $stm = $this->buidQuery($column, $param);
-            if($stm){
-                $data = $stm->fetch(PDO::FETCH_ASSOC);
-            }
-        }catch (PDOException $e){
-            echo $e->getMessage();
-        }
-        return $data;
+        return $this->buildQuery($column, $param);
     }
 }

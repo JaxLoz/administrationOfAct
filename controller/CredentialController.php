@@ -3,6 +3,7 @@
 namespace controller;
 
 use exceptions\EmailExistsException;
+use RuntimeException;
 use service\CredentialService;
 use view\View;
 
@@ -29,5 +30,21 @@ class CredentialController
             $this->view->showAlerts($e->getMessage(), 409);
         }
 
+    }
+
+    public function loginPost()
+    {
+        $dataJson = json_decode(file_get_contents("php://input"),true);
+        try {
+            $login = $this->credentialService->validateCredentials($dataJson);
+            if(!$login){
+                $code = 409;
+            }else{
+                $code = 200;
+            }
+            $this->view->showAlerts($login, $code);
+        }catch (RuntimeException $e){
+            $this->view->showAlerts($e->getMessage(), 409);
+        }
     }
 }

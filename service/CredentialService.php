@@ -11,6 +11,7 @@ use util\Bcript;
 require_once "dao/CredentialDao.php";
 require_once "util/Bcript.php";
 require_once "exceptions/EmailExistsException.php";
+require_once "exceptions/IncorectPasswordException.php";
 
 class CredentialService
 {
@@ -35,7 +36,7 @@ class CredentialService
         }
     }
 
-    public function validateCredentials ($data)
+    public function validateCredentials ($data): bool
     {
         $emailExist = $this->credentialDao->existRegister("email", $data["email"]);
         if($emailExist){

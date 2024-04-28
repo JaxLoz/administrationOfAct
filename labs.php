@@ -6,6 +6,9 @@ $array = [
     "nombre" => "cuatro"
 ];
 
+$array["nombre"] = "Javier Montes ";
+echo $array["nombre"];
+
 $i = 1;
 
 $keys = array_keys($array);

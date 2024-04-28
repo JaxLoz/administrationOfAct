@@ -9,13 +9,15 @@ require  ".\controller\RolController.php";
 require "controller/ActController.php";
 require  'controller/CommimentController.php';
 require  'controller/ActaAndCommitController.php';
+require "controller/CredentialController.php";
 
 $routes = [
     "user" => "\\controller\\UserController",
     "rol" => "\\controller\\RolController",
     "act" => "\\controller\\ActController",
     'commiment' => '\\controller\\CommimentController',
-    'actOnCommit' => '\controller\ActaAndCommitController'
+    'actOnCommit' => '\\controller\\ActaAndCommitController',
+    "singup" => "\\controller\\CredentialController"
 ];
 
 $request_uri = $_SERVER["REQUEST_URI"];

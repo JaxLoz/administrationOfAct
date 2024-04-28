@@ -9,7 +9,7 @@ use util\DbConnection;
 use model\User;
 
 require ".\util\DbConnection.php";
-require "modelDao/CrudDao.php";
+require_once "modelDao/CrudDao.php";
 //require ".\model\User.php";
 
 class UserDao extends CrudDao

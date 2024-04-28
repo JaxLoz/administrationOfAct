@@ -3,6 +3,8 @@
 namespace controller;
 use dao\UserDao;
 use model\User;
+use service\ServiceUser;
+use view\View;
 
 require ".\dao\UserDao.php";
 require  '.\model\User.php';
@@ -10,10 +12,14 @@ class UserController
 {
 
     private UserDao $userDao;
+    private ServiceUser $serviceUser;
+    private View $view;
 
     public function __construct()
     {
         $this->userDao = new UserDao();
+        $this->serviceUser = new ServiceUser();
+        $this->view = new View();
     }
 
     public function getDataHTTP()
@@ -23,27 +29,8 @@ class UserController
 
     public function getUsersGet()
     {
-        $getUsers = $this->userDao->getAll();
-
-        if($getUsers){
-
-            $responseUseGet = [
-                'status' => "Informacion recuperada",
-                'user' => $getUsers
-            ];
-
-            http_response_code(200);
-        }else{
-            $responseUseGet = [
-                'status' => "No se encontro la informacion",
-                'user' => $getUsers
-            ];
-
-            http_response_code(404);
-        }
-
-        header("Content-Type: application/json");
-        echo json_encode($responseUseGet);
+       $users = $this->serviceUser->getUsers();
+       $this->view->showResponse($users, "users", "found");
     }
 
     public function getUserIdGet(){

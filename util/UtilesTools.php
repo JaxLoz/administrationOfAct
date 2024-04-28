@@ -5,12 +5,12 @@ namespace util;
 class UtilesTools
 {
 
-    public static function getKeys($array)
+    public static function getKeys($array): array
     {
         return $keys = array_keys($array);
     }
 
-    public static function buildStringSimple($array, string $split)
+    public static function buildStringSimple($array, string $split): string
     {
         return implode($split, self::getKeys($array));
     }
@@ -26,7 +26,8 @@ class UtilesTools
         return substr($newString, 0, -1);
     }
 
-    public static function buildParaters($iter){
+    public static function buildParaters($iter): string
+    {
 
         $parameters = "?";
 

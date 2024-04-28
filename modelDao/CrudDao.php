@@ -2,15 +2,16 @@
 
 namespace modelDao;
 
-use interfaceDAO\InterfaceDao;
+use interfaceDAO\DaoInterface;
 use PDO;
 use PDOException;
 use util\DbConnection;
 use util\UtilesTools;
 
-require "interfaceDAO/InterfaceDao.php";
+require_once "interfaceDAO/DaoInterface.php";
+require_once "util/UtilesTools.php";
 
-class CrudDao implements InterfaceDao
+class CrudDao implements DaoInterface
 {
 
     private string $nameTable;
@@ -19,6 +20,21 @@ class CrudDao implements InterfaceDao
     public function __construct($nameTable){
         $this->con = DbConnection::getInstance()->getConnection();
         $this->nameTable = $nameTable;
+    }
+
+    private function buidQuery(string $column, string $param)
+    {
+        $data = null;
+        $sql = "select * from $this->nameTable where $column = :param";
+        try{
+            $stm = $this->con->prepare($sql);
+            $stm->bindValue(":param", $param);
+            $stm->execute();
+
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $stm;
     }
 
 
@@ -62,18 +78,19 @@ class CrudDao implements InterfaceDao
         return $data;
     }
 
-    public function updateRegister($dataJson): bool
+    public function updateRegister($data): bool
     {
         $i = 1;
-        $updateColumns = UtilesTools::buildString($dataJson, " = ?,");
-        $sql = "update $this->nameTable set $updateColumns where id = ?";
+        $updateColumns = UtilesTools::buildString($data, " = ?,");
+        $sql = "update $this->nameTable set $updateColumns where id = :id";
 
         try {
             $stm = $this->con->prepare($sql);
-            foreach ($dataJson as $value) {
-                $stm->bindParam($i, $value);
+            foreach ($data as $value) {
+                $stm->bindValue($i, $value);
                 $i++;
             }
+            $stm->bindParam(":id", $data["id"]);
             $stm->execute();
 
             if($stm->rowCount() > 0){
@@ -85,17 +102,18 @@ class CrudDao implements InterfaceDao
         return  false;
     }
 
-    public function insertRegister($dataJson): int
+    public function insertRegister($data): int
     {
         $i = 1;
-        $columns = UtilesTools::buildStringSimple($dataJson, ", ");
-        $parameters = UtilesTools::buildParaters(UtilesTools::getKeys($dataJson));
+        $columns = UtilesTools::buildStringSimple($data, ", ");
+        $parameters = UtilesTools::buildParaters(count(UtilesTools::getKeys($data)));
 
         $sql = "insert into $this->nameTable ($columns) values ($parameters)";
+        echo $sql;
         try {
             $stm = $this->con->prepare($sql);
-            foreach ($dataJson as $value){
-                $stm->bindParam($i,$value);
+            foreach ($data as $value){
+                $stm->bindValue($i,$value, PDO::PARAM_STR);
                 $i++;
             }
             $stm->execute();
@@ -128,5 +146,32 @@ class CrudDao implements InterfaceDao
         }
 
         return false;
+    }
+
+    public function existRegister(string $column, string $param): bool
+    {
+        try{
+            if($this->buidQuery($column, $param)){
+               return true;
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+
+        return false;
+    }
+
+    public function getByParams(string $column, string $param)
+    {
+        $data = null;
+        try {
+            $stm = $this->buidQuery($column, $param);
+            if($stm){
+                $data = $stm->fetch(PDO::FETCH_ASSOC);
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $data;
     }
 }

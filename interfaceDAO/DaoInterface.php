@@ -5,7 +5,7 @@ interface DaoInterface
 {
     public function getAll();
     public function getById($id);
-    public function updateRegister($data):bool;
+    public function updateRegister($data, int $id):bool;
     public function insertRegister($data):int;
     public function deleteRegister($id):bool;
     public function existRegister(string $column, string $param):bool;

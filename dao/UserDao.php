@@ -36,34 +36,4 @@ class UserDao extends CrudDao
 
         return $infoUser;
     }
-
-    /*
-     * este metodo ya no pertenece a este DAO ahora va para el dao de credenciales
-     *
-    public function loginVerification(&$user)
-    {
-        $userLog = null;
-        $userEmail = $user->getEmail();
-        $userPassword = $user->getPassword();
-        try {
-            $sql = "select * from user where email like :email and user_password like :password";
-            $stament = $this->pdo->prepare($sql);
-            $stament->bindParam(":email", $userEmail);
-            $stament->bindParam(":password", $userPassword);
-            $stament->execute();
-
-            if ($stament->rowCount() > 0) {
-                $userLog = $stament->fetch(PDO::FETCH_ASSOC);
-
-            }
-
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        return $userLog;
-    }
-*/
-
-
 }

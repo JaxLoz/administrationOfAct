@@ -47,9 +47,7 @@ class CredentialService
                 throw new IncorectPasswordException("Contraseña incorrecta");
             }
         }else{
-            throw new EmailExistsException("El email " . $data["email"] . "no esta registrado");
+            throw new EmailExistsException("El email " . $data["email"] . " no esta registrado");
         }
-        return false;
     }
-
 }

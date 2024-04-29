@@ -22,6 +22,18 @@ class CrudDao implements DaoInterface
         $this->nameTable = $nameTable;
     }
 
+
+    public function getCon(): PDO
+    {
+        return $this->con;
+    }
+
+    public function getNameTable(): string
+    {
+        return $this->nameTable;
+    }
+
+
     private function buildQuery(string $column, string $param)
     {
         $data = null;
@@ -37,12 +49,6 @@ class CrudDao implements DaoInterface
             echo $e->getMessage();
         }
         return $data;
-    }
-
-
-    public function getNameTable(): string
-    {
-        return $this->nameTable;
     }
 
     public function getAll()
@@ -80,11 +86,11 @@ class CrudDao implements DaoInterface
         return $data;
     }
 
-    public function updateRegister($data): bool
+    public function updateRegister($data, int $id): bool
     {
         $i = 1;
         $updateColumns = UtilesTools::buildString($data, " = ?,");
-        $sql = "update $this->nameTable set $updateColumns where id = :id";
+        $sql = "update $this->nameTable set $updateColumns where id = ?";
 
         try {
             $stm = $this->con->prepare($sql);
@@ -92,7 +98,7 @@ class CrudDao implements DaoInterface
                 $stm->bindValue($i, $value);
                 $i++;
             }
-            $stm->bindParam(":id", $data["id"]);
+            $stm->bindValue(count($data)+1, $id);
             $stm->execute();
 
             if($stm->rowCount() > 0){

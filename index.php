@@ -3,7 +3,6 @@ use controller\UserController;
 use controller\RolController;
 use model\User;
 
-
 require ".\controller\UserController.php";
 require  ".\controller\RolController.php";
 require "controller/ActController.php";
@@ -17,8 +16,20 @@ $routes = [
     "act" => "\\controller\\ActController",
     'commiment' => '\\controller\\CommimentController',
     'actOnCommit' => '\\controller\\ActaAndCommitController',
-    "singup" => "\\controller\\CredentialController"
+    "singup" => "\\controller\\CredentialController",
+    "meeting" => "\\controller\\MeetingController",
+    "meetAndAct" => "\\controller\\MeetAndActController"
 ];
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+$method = $_SERVER['REQUEST_METHOD'];
+if($method == "OPTIONS") {
+    die();
+}
+
 
 $request_uri = $_SERVER["REQUEST_URI"];
 $query_uri = parse_url($request_uri, PHP_URL_QUERY);

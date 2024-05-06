@@ -5,13 +5,15 @@ namespace service;
 use dao\MeetingAndActDao;
 use interfaceDAO\DaoInterface;
 
+require_once "dao/MeetingAndActDao.php";
+
 class MeetingAndActService
 {
 
     private DaoInterface $meetingAndActDao;
 
     public function __construct(){
-        $this->meetingAndActDao = new MeetingAndActDao();
+        $this->meetingAndActDao = new MeetingAndActDao("meeting_act");
     }
 
     public function getMeetAndAct($id)
@@ -19,7 +21,7 @@ class MeetingAndActService
         return $this->meetingAndActDao->getById($id);
     }
 
-    public function insertMeetAndAct($data): int
+    public function insertMeetAndAct($data): array
     {
         return $this->meetingAndActDao->insertRegister($data);
     }

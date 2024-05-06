@@ -9,6 +9,8 @@ require "controller/ActController.php";
 require  'controller/CommimentController.php';
 require  'controller/ActaAndCommitController.php';
 require "controller/CredentialController.php";
+require "controller/MeetingController.php";
+require "controller/MeetingAndActController.php";
 
 $routes = [
     "user" => "\\controller\\UserController",
@@ -18,7 +20,7 @@ $routes = [
     'actOnCommit' => '\\controller\\ActaAndCommitController',
     "singup" => "\\controller\\CredentialController",
     "meeting" => "\\controller\\MeetingController",
-    "meetAndAct" => "\\controller\\MeetAndActController"
+    "meetAndAct" => "\\controller\\MeetingAndActController"
 ];
 
 header('Access-Control-Allow-Origin: *');

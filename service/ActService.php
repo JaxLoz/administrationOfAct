@@ -25,12 +25,17 @@ class ActService
         return $this->actDao->getById($id);
     }
 
+    public function getAllInfoActByUser($idUser)
+    {
+        return $this->actDao->getAllInfActOfUser($idUser);
+    }
+
     public function getActByUser(int $id)
     {
         return $this->actDao->getActOfUser($id);
     }
 
-    public function insertAct($data): int
+    public function insertAct($data): array
     {
         return $this->actDao->insertRegister($data);
     }

@@ -47,4 +47,11 @@ class CredentialController
             $this->view->showAlerts($e->getMessage(), 409);
         }
     }
+
+    public function getInfoUserByCredentialsPost()
+    {
+        $dataJson = json_decode(file_get_contents("php://input"),true);
+        $infoUser = $this->credentialService->getInfoUserByCredentials($dataJson);
+        $this->view->showResponse($infoUser, "User's Info", "found");
+    }
 }

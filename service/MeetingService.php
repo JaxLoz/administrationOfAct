@@ -5,6 +5,7 @@ namespace service;
 use dao\MeetingDao;
 use interfaceDAO\DaoInterface;
 
+require_once "dao/MeetingDao.php";
 class MeetingService
 {
 
@@ -24,7 +25,7 @@ class MeetingService
         return $this->meetingDao->getById($id);
     }
 
-    public function insertMeeting($data): int
+    public function insertMeeting($data): array
     {
         return $this->meetingDao->insertRegister($data);
     }

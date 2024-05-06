@@ -21,8 +21,6 @@ class ActController
         $this->view = new View();
     }
 
-
-
     public function getActsGet()
     {
         $acts = $this->actService->getActs();
@@ -34,6 +32,12 @@ class ActController
         $id = $_GET["id"];
         $act = $this->actService->getAct($id);
         $this->view->showResponse($act, "act", "found");
+    }
+
+    public function getAllInfoActsByUserGet(){
+        $idUser = $_GET["id"];
+        $infoActs = $this->actService->getAllInfoActByUser($idUser);
+        $this->view->showResponse($infoActs, "info", "found");
     }
 
     public function createActPost()

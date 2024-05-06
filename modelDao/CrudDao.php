@@ -110,9 +110,12 @@ class CrudDao implements DaoInterface
         return  false;
     }
 
-    public function insertRegister($data): int
+    public function insertRegister($data)
     {
         $i = 1;
+        $id =[
+            "id" => 0
+        ];
         $columns = UtilesTools::buildStringSimple($data, ", ");
         $parameters = UtilesTools::buildParaters(count(UtilesTools::getKeys($data)));
 
@@ -127,13 +130,13 @@ class CrudDao implements DaoInterface
             $idInserted = $this->con->lastInsertId();
 
             if($idInserted > 0){
-                return $idInserted;
+                $id["id"] = $idInserted;
             }
 
         }catch (PDOException $e){
             echo $e->getMessage();
         }
-        return 0;
+        return $id;
     }
 
     public function deleteRegister($id): bool

@@ -18,28 +18,28 @@ class View
     {
         if($data == null || $data == 0){
             $response = [
-                "status code" => 404,
-                "message" => "No $tableName $action"
+                "status_code" => 404,
+                "data" => "No $tableName $action"
             ];
         }else{
             $response = [
-                "status code" => 200,
+                "status_code" => 200,
                 "message" => "$tableName $action",
                 "data" => $data
             ];
         }
 
-        $this->httpResponse->responseHttp($response['status code'], "Content-Type: application/json", $response);
+        $this->httpResponse->responseHttp($response['status_code'], "Content-Type: application/json", $response);
     }
 
     public function showAlerts(string $message, int $code)
     {
         $response = [
-            "status code" => $code,
-            "message" => $message
+            "status_code" => $code,
+            "data" => $message
         ];
 
-        $this->httpResponse->responseHttp($response['status code'], "Content-Type: application/json", $response);
+        $this->httpResponse->responseHttp($response['status_code'], "Content-Type: application/json", $response);
     }
 
 }

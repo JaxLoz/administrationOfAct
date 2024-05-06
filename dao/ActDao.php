@@ -32,4 +32,25 @@ class ActDao extends CrudDao
         }
         return $infoActs;
     }
+
+    public function getAllInfActOfUser($idUser)
+    {
+        $ActsOfUser = null;
+
+        $sql = "select m.title, m.place, m.star_date, m.star_time, u.firstname, a.progress from meeting_act as ma
+                inner join meeting as m on ma.id_meeting = m.id
+                inner join act as a on ma.id_act = a.id
+                inner join user as u on a.id_user = u.id
+                where u.id = :id order by m.star_time DESC, m.star_date DESC;";
+
+        $stm = parent::getCon()->prepare($sql);
+        $stm->bindValue(":id", $idUser);
+        $stm->execute();
+
+        if($stm->rowCount() > 0){
+            $ActsOfUser = $stm->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return $ActsOfUser;
+    }
 }

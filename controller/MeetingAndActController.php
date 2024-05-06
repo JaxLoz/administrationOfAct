@@ -32,14 +32,14 @@ class MeetingAndActController
         $this->view->showResponse($actInserted, "meetAndAct", "inserted");
     }
 
-    public function updateMeetingPut()
+    public function updateMeetAndActPut()
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $actUpdated = $this->meetAndActService->updateMeetAndAct($data);
         $this->view->showResponse($actUpdated, "meetAndAct", "updated");
     }
 
-    public function removeMeetingDelete()
+    public function removeMeetAndActDelete()
     {
         $id = $_GET['id'];
         $actDeleted = $this->meetAndActService->deleteMeetAndAct($id);

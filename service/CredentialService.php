@@ -50,4 +50,10 @@ class CredentialService
             throw new EmailExistsException("El email " . $data["email"] . " no esta registrado");
         }
     }
+
+    public function getInfoUserByCredentials($data)
+    {
+        $userEmail = $data["email"];
+        return $this->credentialDao->getInfoUserByCredentials($userEmail);
+    }
 }

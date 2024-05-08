@@ -33,7 +33,13 @@ class MeetingAndActService
         return $this->meetingAndActDao->updateRegister($data, $id);
     }
 
-    public function deleteMeetAndAct($id): bool{
+    public function deleteMeetAndAct($id): bool
+    {
         return $this->meetingAndActDao->deleteRegister($id);
+    }
+
+    public function deleteMeetAndActWhitIds($idAct, $idMeeting): bool
+    {
+        return $this->meetingAndActDao->deleteMeetingAndActByIds($idAct, $idMeeting);
     }
 }

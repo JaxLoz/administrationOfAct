@@ -46,4 +46,11 @@ class MeetingAndActController
         $this->view->showResponse($actDeleted, "meetAndAct", "deleted");
     }
 
+    public function removeMeetAndActByIdsDelete (){
+        $idAct = $_GET["idAct"];
+        $idMeeting = $_GET["idMeeting"];
+        $meetingAndAct = $this->meetAndActService->deleteMeetAndActWhitIds($idAct, $idMeeting);
+        $this->view->showResponse($meetingAndAct, "meetAndAct", "deleted");
+    }
+
 }

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://bisbz5bdtevegiq59lre-mysql.services.clever-cloud.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="Procrastinacion" uuid="77169819-9349-4ab2-a95a-26db329216ac">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://buvocwv5zbkknfl4yyay-mysql.services.clever-cloud.com:3306/buvocwv5zbkknfl4yyay</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

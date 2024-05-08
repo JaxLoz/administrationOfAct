@@ -37,7 +37,7 @@ class ActDao extends CrudDao
     {
         $ActsOfUser = null;
 
-        $sql = "select m.title, m.place, m.star_date, m.star_time, u.firstname, a.progress from meeting_act as ma
+        $sql = "select a.id as id_act , m.id as id_meeting,  m.title, m.place, m.star_date, m.star_time, u.firstname, u.lastname,a.progress from meeting_act as ma
                 inner join meeting as m on ma.id_meeting = m.id
                 inner join act as a on ma.id_act = a.id
                 inner join user as u on a.id_user = u.id

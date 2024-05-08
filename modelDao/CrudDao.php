@@ -110,7 +110,7 @@ class CrudDao implements DaoInterface
         return  false;
     }
 
-    public function insertRegister($data)
+    public function insertRegister($data): array
     {
         $i = 1;
         $id =[

@@ -23,7 +23,7 @@ class UserService
         return $this->userDao->getById($id);
     }
 
-    public function insertUser($data): int
+    public function insertUser($data): array
     {
        return $this->userDao->insertRegister($data);
     }

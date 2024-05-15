@@ -22,7 +22,7 @@ class CredentialService
         $this->credentialDao = new CredentialDao();
     }
 
-    public function registerCredentialOfUser ($data): int{
+    public function registerCredentialOfUser ($data): array{
 
         $dataCredentials = $data;
         $passwordHash = Bcript::encrypt($dataCredentials["user_password"]);

@@ -40,4 +40,9 @@ class MeetingService
     public function deleteMeeting($id): bool{
         return $this->meetingDao->deleteRegister($id);
     }
+
+    public function meetingWithOutActs(int $idUser)
+    {
+        return $this->meetingDao->getMeetingsWhitOutActs($idUser);
+    }
 }

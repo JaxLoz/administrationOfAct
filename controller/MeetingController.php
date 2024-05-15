@@ -50,4 +50,11 @@ class MeetingController
         $this->view->showResponse($actDeleted, "meeting", "deleted");
     }
 
+    public function getMeetingsWithOutActsGet()
+    {
+        $idUser = $_GET["id"];
+        $MeetingsWithOutActs = $this->meetingService->meetingWithOutActs($idUser);
+        $this->view->showResponse($MeetingsWithOutActs, "meeting", "found");
+    }
+
 }

@@ -25,7 +25,7 @@ class ActService
         return $this->actDao->getById($id);
     }
 
-    public function getAllInfoActByUser($idUser)
+    public function getAllInfoActByUser($idUser): array
     {
         return $this->actDao->getAllInfActOfUser($idUser);
     }

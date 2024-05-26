@@ -18,8 +18,9 @@ class View
     {
         if($data == null || $data == 0){
             $response = [
-                "status_code" => 404,
-                "data" => "No $tableName $action"
+                "status_code" => 200,
+                "message" => "No $tableName $action",
+                "data" => $data
             ];
         }else{
             $response = [
@@ -32,7 +33,7 @@ class View
         $this->httpResponse->responseHttp($response['status_code'], "Content-Type: application/json", $response);
     }
 
-    public function showAlerts(string $message, int $code)
+    public function showAlerts($message, int $code)
     {
         $response = [
             "status_code" => $code,

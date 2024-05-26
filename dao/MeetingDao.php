@@ -15,9 +15,9 @@ class MeetingDao extends CrudDao
         Parent::__construct($nameTale);
     }
 
-    public function getMeetingsWhitOutActs(int $idUser)
+    public function getMeetingsWhitOutActs(int $idUser): array
     {
-        $meetings = null;
+        $meetings = [];
 
         $sql = "select * from meeting where id not in (select m.id  from meeting_act as ma
                                              inner join meeting as m on ma.id_meeting = m.id

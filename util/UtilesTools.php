@@ -2,6 +2,9 @@
 
 namespace util;
 
+use PDO;
+use PDOException;
+
 class UtilesTools
 {
 
@@ -36,6 +39,23 @@ class UtilesTools
         }
 
         return $parameters;
+    }
+
+    public function buildQuery(string $column, string $param, string $nameTable)
+    {
+        $data = null;
+        $sql = "select * from $nameTable where $column = :param";
+        try{
+            $stm = $this->con->prepare($sql);
+            $stm->bindValue(":param", $param);
+            $stm->execute();
+            if($stm->rowCount() > 0){
+                $data = $stm->fetch(PDO::FETCH_ASSOC);
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $data;
     }
 
 }

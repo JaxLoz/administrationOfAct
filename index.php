@@ -11,6 +11,7 @@ require  'controller/ActaAndCommitController.php';
 require "controller/CredentialController.php";
 require "controller/MeetingController.php";
 require "controller/MeetingAndActController.php";
+require "controller/RegisterNewUserController.php";
 
 $routes = [
     "user" => "\\controller\\UserController",
@@ -20,14 +21,19 @@ $routes = [
     'actOnCommit' => '\\controller\\ActaAndCommitController',
     "singup" => "\\controller\\CredentialController",
     "meeting" => "\\controller\\MeetingController",
-    "meetAndAct" => "\\controller\\MeetingAndActController"
+    "meetAndAct" => "\\controller\\MeetingAndActController",
+    "register" => "\\controller\\RegisterNewUserController"
 ];
 
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
 $method = $_SERVER['REQUEST_METHOD'];
+
+$authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
+
 if($method == "OPTIONS") {
     die();
 }

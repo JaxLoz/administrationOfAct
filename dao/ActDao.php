@@ -33,9 +33,9 @@ class ActDao extends CrudDao
         return $infoActs;
     }
 
-    public function getAllInfActOfUser($idUser)
+    public function getAllInfActOfUser($idUser): array
     {
-        $ActsOfUser = null;
+        $ActsOfUser = [];
 
         $sql = "select a.id as id_act , m.id as id_meeting,  m.title, m.place, m.star_date, m.star_time, u.firstname, u.lastname,a.progress from meeting_act as ma
                 inner join meeting as m on ma.id_meeting = m.id

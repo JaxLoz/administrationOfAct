@@ -35,17 +35,8 @@ class CredentialController
     public function loginPost()
     {
         $dataJson = json_decode(file_get_contents("php://input"),true);
-        try {
-            $login = $this->credentialService->validateCredentials($dataJson);
-            if(!$login){
-                $code = 409;
-            }else{
-                $code = 200;
-            }
-            $this->view->showAlerts($login, $code);
-        }catch (RuntimeException $e){
-            $this->view->showAlerts($e->getMessage(), 409);
-        }
+        $login = $this->credentialService->validateCredentials($dataJson);
+        $this->view->showAlerts($login, 200);
     }
 
     public function getInfoUserByCredentialsPost()

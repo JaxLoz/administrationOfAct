@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="22c8659d-6805-4415-8815-74912fbb2833" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/util/RequestCrud/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/jwt/Jwt.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CredentialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CredentialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/CredentialService.php" beforeDir="false" afterPath="$PROJECT_DIR$/service/CredentialService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/View.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" environment="test" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\xampp\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2eCqHFG68c0eNQlRdPDV7IObhav" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;HTTP Request.All in mkl'.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.get-requests | GET request with a header.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.DbConnection.php.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.index.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.CredentialDao.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.CrudDao.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.DbConnection.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.RolDao.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.UserController.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.UserDao.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.configEnv.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.index.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.labs.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.p.php.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/xampp/htdocs/RequestCrud&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;rest.client.default.execution.environment&quot;: &quot;test&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.gutterIcons&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;,
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\Javier\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="e547f6ae-262a-4da1-a968-3bb5bc445a27" reportId="RequestCrud/qodana/2024-03-25" />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\RequestCrud\util" />
+      <recent name="D:\xampp\htdocs\RequestCrud" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="HttpClient.HttpRequestRunConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PS-241.14494.237" />
+        <option value="bundled-php-predefined-ba97393d7c68-8f0632a2a215-com.jetbrains.php.sharedIndexes-PS-241.14494.237" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22c8659d-6805-4415-8815-74912fbb2833" name="Changes" comment="" />
+      <created>1711418817863</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711418817863</updated>
+      <workItem from="1711418818948" duration="6717000" />
+      <workItem from="1711427539000" duration="5000" />
+      <workItem from="1711427560530" duration="1603000" />
+      <workItem from="1711464347939" duration="1424000" />
+      <workItem from="1711471381322" duration="2727000" />
+      <workItem from="1711503700938" duration="8173000" />
+      <workItem from="1711556769797" duration="12077000" />
+      <workItem from="1711579180646" duration="1315000" />
+      <workItem from="1711581329782" duration="2844000" />
+      <workItem from="1711588135828" duration="9633000" />
+      <workItem from="1711604949457" duration="782000" />
+      <workItem from="1711669230757" duration="9487000" />
+      <workItem from="1711729788520" duration="26722000" />
+      <workItem from="1711762040204" duration="9997000" />
+      <workItem from="1711809925720" duration="26206000" />
+      <workItem from="1711986549479" duration="16878000" />
+      <workItem from="1712081715268" duration="5481000" />
+      <workItem from="1712173804205" duration="5652000" />
+      <workItem from="1712357199024" duration="465000" />
+      <workItem from="1712357742372" duration="26000" />
+      <workItem from="1712435317751" duration="9485000" />
+      <workItem from="1712566766784" duration="804000" />
+      <workItem from="1712610486645" duration="9635000" />
+      <workItem from="1713397235321" duration="514000" />
+      <workItem from="1713576990045" duration="684000" />
+      <workItem from="1713577689881" duration="600000" />
+      <workItem from="1713670447131" duration="1220000" />
+      <workItem from="1713725052683" duration="401000" />
+      <workItem from="1714151595064" duration="52000" />
+      <workItem from="1714151671443" duration="1015000" />
+      <workItem from="1714153150684" duration="20235000" />
+      <workItem from="1714176582724" duration="8435000" />
+      <workItem from="1714246707534" duration="56000" />
+      <workItem from="1714246777734" duration="8427000" />
+      <workItem from="1714262410822" duration="13474000" />
+      <workItem from="1714318554199" duration="13379000" />
+      <workItem from="1714333358148" duration="2176000" />
+      <workItem from="1714349441251" duration="5594000" />
+      <workItem from="1714356518599" duration="4588000" />
+      <workItem from="1714432536985" duration="15465000" />
+      <workItem from="1714531449540" duration="5563000" />
+      <workItem from="1714618202281" duration="701000" />
+      <workItem from="1714666066866" duration="25325000" />
+      <workItem from="1714709339081" duration="9342000" />
+      <workItem from="1714834237695" duration="15579000" />
+      <workItem from="1714941073858" duration="9712000" />
+      <workItem from="1715014140907" duration="3147000" />
+      <workItem from="1715034592139" duration="7011000" />
+      <workItem from="1715052020630" duration="5713000" />
+      <workItem from="1715109452269" duration="15367000" />
+      <workItem from="1715218836337" duration="5673000" />
+      <workItem from="1715439519454" duration="6589000" />
+      <workItem from="1715536159684" duration="50000" />
+      <workItem from="1715536222132" duration="8350000" />
+      <workItem from="1715618071881" duration="4713000" />
+      <workItem from="1715787217949" duration="56000" />
+      <workItem from="1715787288510" duration="9186000" />
+      <workItem from="1716159278698" duration="666000" />
+      <workItem from="1716589481375" duration="18933000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

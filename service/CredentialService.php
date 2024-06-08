@@ -10,6 +10,7 @@ use util\Bcript;
 
 require_once "dao/CredentialDao.php";
 require_once "util/Bcript.php";
+require_once "service/ValidateEmailService.php";
 require_once "exceptions/EmailExistsException.php";
 require_once "exceptions/IncorectPasswordException.php";
 require_once "jwt/Jwt.php";
@@ -19,11 +20,12 @@ class CredentialService
 
     private DaoInterface $credentialDao;
     private Jwt $jwtToken;
+    private ValidateEmailService $validateEmailService;
 
     public function __construct(){
         $this->credentialDao = new CredentialDao();
-        $this->jwtToken = new Jwt("oOZbafIovK6dbgmwllUO63j27fyercc/sTYEjD6eakGEdh+Fvj8g3LIsLQ/WyxTDboct+V8j67MPglpq7UfoSA==
-");
+        $this->jwtToken = new Jwt("oOZbafIovK6dbgmwllUO63j27fyercc/sTYEjD6eakGEdh+Fvj8g3LIsLQ/WyxTDboct+V8j67MPglpq7UfoSA==");
+        $this->validateEmailService = new ValidateEmailService();
     }
 
     public function registerCredentialOfUser ($data): array{
@@ -34,6 +36,7 @@ class CredentialService
 
         $emailExist = $this->credentialDao->existRegister("email", $dataCredentials["email"]);
         if(!$emailExist){
+            $dataCredentials = $this->validateEmailService->enterValidationCode($dataCredentials);
             return $this->credentialDao->insertRegister($dataCredentials);
         }else{
             throw new EmailExistsException("El email " . $dataCredentials["email"] . " ya se encuentra registrado");
@@ -77,11 +80,6 @@ class CredentialService
     {
         $userEmail = $data["email"];
         return $this->credentialDao->getInfoUserByCredentials($userEmail);
-    }
-
-    private function buildPayloadJwt()
-    {
-
     }
 
 }

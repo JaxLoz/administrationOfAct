@@ -2,6 +2,9 @@
 
 namespace util;
 
+use DateTime;
+use DateTimeZone;
+use Exception;
 use PDO;
 use PDOException;
 
@@ -56,6 +59,17 @@ class UtilesTools
             echo $e->getMessage();
         }
         return $data;
+    }
+
+    public static function getCurrentDate(string $location): string
+    {
+        $currentDate = new DateTime();
+        try {
+            $currentDate = new DateTime('now', new DateTimeZone($location));
+        }catch (Exception $e){
+            echo "error in obtaining the current date";
+        }
+        return $currentDate->format("Y-m-d H:i:s");
     }
 
 }

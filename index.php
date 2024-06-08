@@ -1,6 +1,7 @@
 <?php
 use controller\UserController;
 use controller\RolController;
+use jwt\TokenAuth;
 use model\User;
 
 require ".\controller\UserController.php";
@@ -12,31 +13,45 @@ require "controller/CredentialController.php";
 require "controller/MeetingController.php";
 require "controller/MeetingAndActController.php";
 require "controller/RegisterNewUserController.php";
+require_once "jwt/TokenAuth.php";
 
 $routes = [
-    "user" => "\\controller\\UserController",
-    "rol" => "\\controller\\RolController",
-    "act" => "\\controller\\ActController",
-    'commiment' => '\\controller\\CommimentController',
-    'actOnCommit' => '\\controller\\ActaAndCommitController',
-    "singup" => "\\controller\\CredentialController",
-    "meeting" => "\\controller\\MeetingController",
-    "meetAndAct" => "\\controller\\MeetingAndActController",
-    "register" => "\\controller\\RegisterNewUserController"
+
+    "routesAuth" => [
+        "act" => "\\controller\\ActController",
+        'commiment' => '\\controller\\CommimentController',
+        'actOnCommit' => '\\controller\\ActaAndCommitController',
+        "meeting" => "\\controller\\MeetingController",
+        "meetAndAct" => "\\controller\\MeetingAndActController"
+    ],
+
+    "routesWhitOutAuth" => [
+        "register" => "\\controller\\RegisterNewUserController",
+        "singup" => "\\controller\\CredentialController",
+        "validationEmail" => "\\controller\\ValidationEmailController",
+        "user" => "\\controller\\UserController",
+        "rol" => "\\controller\\RolController"
+    ]
+
+
 ];
 
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization, Bearer");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
 $method = $_SERVER['REQUEST_METHOD'];
-
 $authorizationHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
 
 if($method == "OPTIONS") {
-    die();
+    http_response_code(200);
+    exit();
 }
+
+
+
+$tokenAuth = new TokenAuth();
 
 
 $request_uri = $_SERVER["REQUEST_URI"];
@@ -47,13 +62,25 @@ parse_str($query_uri, $query_params);
 $controllerName = isset($query_params["controller"]) ? $query_params["controller"] : "";
 $action = isset($query_params["action"]) ? $query_params["action"] : "";
 
-if(isset($routes[$controllerName])){
+if(isset($routes["routesAuth"][$controllerName]) && $authorizationHeader != null) {
+    if($tokenAuth->authenticationJWTToken($authorizationHeader)){
+        $className = $routes["routesAuth"][$controllerName];
+        $instance = new $className;
 
-    $className = $routes[$controllerName];
+        $requestType = $_SERVER["REQUEST_METHOD"];
+        $methodName = $action . ucfirst(strtolower($requestType));
+
+        if(method_exists($instance, $methodName)){
+            $instance->$methodName();
+        }else{
+            http_response_code(404);
+        }
+    }
+}else if(isset($routes["routesWhitOutAuth"][$controllerName])) {
+    $className = $routes["routesWhitOutAuth"][$controllerName];
     $instance = new $className;
 
     $requestType = $_SERVER["REQUEST_METHOD"];
-
     $methodName = $action . ucfirst(strtolower($requestType));
 
     if(method_exists($instance, $methodName)){

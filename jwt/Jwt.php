@@ -2,6 +2,8 @@
 
 namespace jwt;
 
+use http\Exception\InvalidArgumentException;
+
 class Jwt
 {
     private string $key;
@@ -37,11 +39,11 @@ class Jwt
         return $header.".".$payload.".".$signature;
     }
 
-    public function jwtDecode(string $token): string
+    public function jwtDecode(string $token): array
     {
 
         if( preg_match("/^(?<header>.+)\.(?<payload>.+)\.(?<signature>.+)$/", $token, $matches) !== 1){
-            echo "Formato del token incorrecto";
+            throw new InvalidArgumentException("invalid token format");
         }
 
         // armamos el signature con los header y payload del token
@@ -53,7 +55,8 @@ class Jwt
 
         // comparamos los dos signatures
         if(!hash_equals($signatureOfToken, $signature)){
-            echo "Token incorrecto";
+            http_response_code(401);
+            throw new InvalidArgumentException("signature doesn't match");
         }
 
         return json_decode($this->base64UrlDecode($matches["payload"]),true);

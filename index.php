@@ -13,6 +13,7 @@ require "controller/CredentialController.php";
 require "controller/MeetingController.php";
 require "controller/MeetingAndActController.php";
 require "controller/RegisterNewUserController.php";
+require "controller/ValidateEmailController.php";
 require_once "jwt/TokenAuth.php";
 
 $routes = [
@@ -28,7 +29,7 @@ $routes = [
     "routesWhitOutAuth" => [
         "register" => "\\controller\\RegisterNewUserController",
         "singup" => "\\controller\\CredentialController",
-        "validationEmail" => "\\controller\\ValidationEmailController",
+        "validationEmail" => "\\controller\\ValidateEmailController",
         "user" => "\\controller\\UserController",
         "rol" => "\\controller\\RolController"
     ]

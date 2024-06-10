@@ -22,11 +22,12 @@ class ValidateEmailService
     public function validateEmailVerificationCode($data): bool
     {
         $isVerified = false;
-        $dataUpdateCode = $data;
-        unset($dataUpdateCode["id"]);
+        $dataUpdateCode = [
+            "is_verified" => 1
+        ];
 
         if ($this->compareVerificationCode($data["id"], $data["verification_code"])) {
-            $isVerified = $this->credentialDao->updateRegister($data["id"], $dataUpdateCode);
+            $isVerified = $this->credentialDao->updateRegister($dataUpdateCode, $data["id"]);
         }
 
         return $isVerified;
@@ -62,7 +63,7 @@ class ValidateEmailService
         $isValid = false;
         $infoCredential = $this->credentialDao->getById($id);
         $dateCurrent = UtilesTools::getCurrentDate('America/Bogota');
-        if(strcmp($infoCredential["verification_code"], $verificationCode) !== 0 && strtotime($infoCredential["code_expires_at"]) > strtotime($dateCurrent)){
+        if(strcmp($infoCredential["verification_code"], $verificationCode) == 0 && strtotime($infoCredential["code_expires_at"]) > strtotime($dateCurrent)){
             $isValid = true;
         }
 

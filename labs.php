@@ -36,3 +36,5 @@ if (strtotime($array["fechaExpiracion"]) > strtotime($array["fechaActual"])){
     echo "ya expiro";
 }
 
+echo file_get_contents("EmailConfig/HtmlTemplates/formatVerificationCode.html");
+

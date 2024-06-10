@@ -1,23 +1,49 @@
 <?php
+require "vendor/autoload.php";
 
-if($_SERVER["REQUEST_METHOD"] === "POST"){
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    $contenido = file_get_contents("php://input");
+$mail = new PHPMailer(true);
 
-    $datos = json_decode($contenido, true);
+try {
+    // Configuración del servidor SMTP
+    $mail->SMTPDebug = 2;
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'adactsup@gmail.com';
+    $mail->Password = "6'{5PI9|ZXi%_rZS\}m1{]NpW5aiH@";
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
 
-    if(isset($datos)){
-        $respuesta = array(
-            "success" => true,
-            "message" => "Los datos se han recibido correctamente.",
-            "datos" => array(
-                "nombre" => $datos["nombre"],
-                "email" => $datos["email"]
-            )
-        );
+    // Destinatarios
+    $mail->setFrom('adactsup@gmail.com', 'Remitente');
+    $mail->addAddress('jaxloz2002@gmail.com', 'Destinatario');
 
-        header("Content-Type: application/json");
-        echo json_encode($respuesta);
-    }
+    // Contenido del correo
+    $mail->isHTML(true);
+    $mail->Subject = 'prueba';
 
+    // Contenido HTML personalizado
+    $contenidoHTML = '
+        <html>
+        <head>
+            <title>Correo electrónico HTML</title>
+        </head>
+        <body>
+            <h1>¡Hola!</h1>
+            <p>Este es un correo electrónico con contenido HTML personalizado.</p>
+            <p>Puedes incluir imágenes, estilos CSS, tablas, enlaces y cualquier otro elemento HTML.</p>
+        </body>
+        </html>
+    ';
+
+    $mail->Body = $contenidoHTML;
+    $mail->AltBody = 'Este es un correo electrónico con contenido HTML. Si no puedes verlo, asegúrate de habilitar la visualización de HTML.';
+
+    $mail->send();
+    echo 'Correo enviado correctamente';
+} catch (Exception $e) {
+    echo 'Error al enviar el correo: ', $mail->ErrorInfo;
 }

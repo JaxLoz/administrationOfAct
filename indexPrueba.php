@@ -4,6 +4,8 @@ require "vendor/autoload.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+
+
 $mail = new PHPMailer(true);
 
 try {
@@ -13,7 +15,7 @@ try {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'adactsup@gmail.com';
-    $mail->Password = "6'{5PI9|ZXi%_rZS\}m1{]NpW5aiH@";
+    $mail->Password = "yvbd hdfq qnjr caoq";
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 

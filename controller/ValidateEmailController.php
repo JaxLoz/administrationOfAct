@@ -30,4 +30,17 @@ class ValidateEmailController
         $this->view->showResponse($isRefreshed, "refresh_verification_code", "refresh_verification_code");
     }
 
+    public function sendValidationCodePost()
+    {
+        $email = json_decode(file_get_contents("php://input"), true);
+        $isMailSent = $this->validateEmailService->sendValidationCodeToEmail($email["email"]);
+        $this->view->showResponse($isMailSent, "mail_sent", "mail_sent");
+    }
+
+    public function fingInfoCredentialsPost(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        $infoCredentials = $this->validateEmailService->findInfoCredentials($data);
+        $this->view->showResponse($infoCredentials, "credential", "info");
+    }
+
 }

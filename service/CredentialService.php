@@ -54,18 +54,29 @@ class CredentialService
         ];
 
         if($emailExist){
-            $credetials = $this->credentialDao->getByParams("email", $data["email"]);
+            $credetials = $this->credentialDao->getByParams("email", $data["email"]); // obtengo la informacion del usuario
 
             if(Bcript::verifyEncrypt($data["user_password"], $credetials["user_password"])){
 
-                unset($credetials["user_password"]);
-                $jwtToken = $this->jwtToken->jwtEncode($credetials);
+                if($credetials["is_verified"] === 1){
+                    unset($credetials["user_password"]);
+                    $jwtToken = $this->jwtToken->jwtEncode($credetials);
 
-                $response["validateCredentials"] = true;
-                $response["status"] = "Credenciales validas";
-                $response["token"] = $jwtToken;
+                    $response["validateCredentials"] = true;
+                    $response["status"] = "Credenciales validas";
+                    $response["credentialsOk"] = true;
+                    $response["isVerified"] = true;
+                    $response["token"] = $jwtToken;
+                }else{
+                    $response["validateCredentials"] = false;
+                    $response["credentialsOk"] = false;
+                    $response["isVerified"] = false;
+                    $response["status"] = "Correo electronico no verificado";
+                }
+
             }else{
                 $response["validateCredentials"] = false;
+                $response["credentialsOk"] = false;
                 $response["status"] = "Contraseña incorrecta";
             }
         }else{

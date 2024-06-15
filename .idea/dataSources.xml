@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@bisbz5bdtevegiq59lre-mysql.services.clever-cloud.com" uuid="0c063635-65cc-46a4-aece-f03f4d13d873">
+    <data-source source="LOCAL" name="adminActs" uuid="0c063635-65cc-46a4-aece-f03f4d13d873">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://bisbz5bdtevegiq59lre-mysql.services.clever-cloud.com:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://uyeags95emzhznug:aSh5riojFDJXDtWX8XHZ@bisbz5bdtevegiq59lre-mysql.services.clever-cloud.com:3306/bisbz5bdtevegiq59lre</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="Procrastinacion" uuid="77169819-9349-4ab2-a95a-26db329216ac">

@@ -6,28 +6,33 @@ use dao\CredentialDao;
 use DateInterval;
 use DateTime;
 use DateTimeZone;
+use EmailConfig\EmailConfig;
 use Exception;
 use util\UtilesTools;
 
 require_once "dao/CredentialDao.php";
+require_once "EmailConfig/EmailConfig.php";
 class ValidateEmailService
 {
     private CredentialDao $credentialDao;
+    private EmailConfig $emailConfig;
 
     public function __construct()
     {
         $this->credentialDao = new CredentialDao();
+        $this->emailConfig = new EmailConfig();
     }
 
     public function validateEmailVerificationCode($data): bool
     {
         $isVerified = false;
+        $credentials = $this->credentialDao->getByParams("email", $data["email"]);
         $dataUpdateCode = [
             "is_verified" => 1
         ];
 
-        if ($this->compareVerificationCode($data["id"], $data["verification_code"])) {
-            $isVerified = $this->credentialDao->updateRegister($dataUpdateCode, $data["id"]);
+        if ($this->compareVerificationCode($credentials["id"], $data["verification_code"])) {
+            $isVerified = $this->credentialDao->updateRegister($dataUpdateCode, $credentials["id"]);
         }
 
         return $isVerified;
@@ -38,7 +43,7 @@ class ValidateEmailService
         $isUpdatedVerificationCode = $this->updateVerificationCode($data);
         $isRefreshed = false;
         if ($isUpdatedVerificationCode) {
-            // logica de envio de Email con el nuevo token
+
             $isRefreshed = true;
         }
 
@@ -47,17 +52,18 @@ class ValidateEmailService
 
     private function updateVerificationCode($data): bool
     {
-        $id = $data["id"];
+        $credentials = $this->credentialDao->getByParams("email", $data["email"]);
+        $id = $credentials["id"];
         $newCode = $this->generateValidationCode();
         $updateCodeExpirationDate = $this->generateCodeExpirationDate();
 
         $data["verification_code"] = $newCode;
         $data["code_expires_at"] = $updateCodeExpirationDate;
-
-        unset($data["id"]);
+        unset($data["email"]);
         return $this->credentialDao->updateRegister($data, $id);
     }
 
+    // verificacion del codigo de validacion
     private function compareVerificationCode(int $id, string $verificationCode): bool
     {
         $isValid = false;
@@ -70,6 +76,7 @@ class ValidateEmailService
         return $isValid;
     }
 
+    // insercion del codigo de validacion a los datos de registro de un nuevo usuario
     public function enterValidationCode(array $data): array
     {
         $dataWithVerificationCode = $data;
@@ -105,5 +112,20 @@ class ValidateEmailService
             echo "Error generating expiration date";
         }
         return $expirationDate->format("Y-m-d H:i:s");
+    }
+
+    // Metodo encargado de enviar el Email con el codigo de verificacion que esta almacenado en el registro de la nueva credencial
+    function sendValidationCodeToEmail(string $email): bool
+    {
+
+        $infoCredentials = $this->credentialDao->getByParams("email", $email);
+        $this->emailConfig->setRecipient($infoCredentials["email"]);
+
+        return $this->emailConfig->sendEmailValidationEmail($infoCredentials["verification_code"]);
+    }
+
+    function findInfoCredentials($data)
+    {
+        return $this->credentialDao->getByParams("email", $data["email"]);
     }
 }

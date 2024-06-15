@@ -11,7 +11,7 @@ require 'model/ActAndCommiment.php';
 
 class ActaAndCommitController
 {
-    private $actCommitDao;
+    private ActAndCommitmentDao $actCommitDao;
 
     public function __construct()
     {

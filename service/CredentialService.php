@@ -58,7 +58,7 @@ class CredentialService
 
             if(Bcript::verifyEncrypt($data["user_password"], $credetials["user_password"])){
 
-                if($credetials["is_verified"] === 1){
+                if($credetials["is_verified"] == 1){
                     unset($credetials["user_password"]);
                     $jwtToken = $this->jwtToken->jwtEncode($credetials);
 

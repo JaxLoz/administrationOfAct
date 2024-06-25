@@ -14,7 +14,10 @@ require "controller/MeetingController.php";
 require "controller/MeetingAndActController.php";
 require "controller/RegisterNewUserController.php";
 require "controller/ValidateEmailController.php";
+require_once "controller/InvitationController.php";
 require_once "jwt/TokenAuth.php";
+
+
 
 $routes = [
 
@@ -23,7 +26,8 @@ $routes = [
         'commiment' => '\\controller\\CommimentController',
         'actOnCommit' => '\\controller\\ActaAndCommitController',
         "meeting" => "\\controller\\MeetingController",
-        "meetAndAct" => "\\controller\\MeetingAndActController"
+        "meetAndAct" => "\\controller\\MeetingAndActController",
+        "invitation" => "\\controller\\InvitationController"
     ],
 
     "routesWhitOutAuth" => [

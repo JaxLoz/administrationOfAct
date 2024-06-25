@@ -40,6 +40,12 @@ class UserController
         $this->view->showResponse($user, "user", "found");
     }
 
+    public function getUserWithEmailGet()
+    {
+        $users = $this->serviceUser->getUserWithEmail();
+        $this->view->showResponse($users, "users", "usersWithEmail");
+    }
+
     public function getUserForRolGet()
     {
 

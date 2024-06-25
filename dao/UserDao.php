@@ -36,4 +36,19 @@ class UserDao extends CrudDao
 
         return $infoUser;
     }
+
+    public function getUsersWithEmail() :array
+    {
+        $users = [];
+        $sql = "select u.id, u.firstname, u.lastname, c.email, c.id as id_credential from user as u inner join credentials as c on u.id_credential = c.id where c.is_verified = 1";
+        try {
+            $stm = parent::getCon()->prepare($sql);
+            if($stm->execute()){
+                $users = $stm->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $users;
+    }
 }

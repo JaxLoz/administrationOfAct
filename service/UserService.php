@@ -23,6 +23,11 @@ class UserService
         return $this->userDao->getById($id);
     }
 
+    public function getUserWithEmail()
+    {
+        return $this->userDao->getUsersWithEmail();
+    }
+
     public function insertUser($data): array
     {
        return $this->userDao->insertRegister($data);

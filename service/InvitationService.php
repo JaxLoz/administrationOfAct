@@ -29,6 +29,11 @@ class InvitationService
         return $this->invitationDao->getById($id);
     }
 
+    public function getInfoGuestByMeetingdId($meetindId)
+    {
+        return $this->invitationDao->getInfoGuestByMeetingId($meetindId);
+    }
+
     public function updateInvitation($data): bool
     {
          $id = $data["id"];
@@ -58,6 +63,10 @@ class InvitationService
         return $this->invitationDao->deleteRegister($id);
     }
 
+    public function deleteInvitationByMeetingId($meetingId): bool
+    {
+        return $this->invitationDao->deleteInvitationByMeetingId($meetingId);
+    }
 
     public function sendEmailInvitation($invitationIds): bool
     {

@@ -28,6 +28,13 @@ class InvitationController
         $invitation = $this->invitationService->getInvitation($id);
         $this->view->showResponse($invitation, "Invitation", "getInvitation");
     }
+    
+    public function getInfoGuestByMeetingIdGet()
+    {
+        $meetingId = $_GET["meetingId"];
+        $infoGuest = $this->invitationService->getInfoGuestByMeetingdId($meetingId);
+        $this->view->showResponse($infoGuest, "Invitation", "InfoInvitation");
+    }
 
     public function insertInvitationPost(){
         $infNewInvitation = json_decode(file_get_contents("php://input"), true);
@@ -44,6 +51,13 @@ class InvitationController
     public function removeInvitationDelete(){
         $id = $_GET["id"];
         $invitationDeleted = $this->invitationService->deleteInvitation($id);
+        $this->view->showResponse($invitationDeleted, "Invitation", "invitationDeleted");
+    }
+
+    public function removeInvitationByMeetingIdDelete()
+    {
+        $meetingId = $_GET["meetingId"];
+        $invitationDeleted = $this->invitationService->deleteInvitationByMeetingId($meetingId);
         $this->view->showResponse($invitationDeleted, "Invitation", "invitationDeleted");
     }
 

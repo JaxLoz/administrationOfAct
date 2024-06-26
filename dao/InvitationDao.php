@@ -56,4 +56,46 @@ class InvitationDao extends CrudDao
         }
         return $infoInvitation;
     }
+
+    public function deleteInvitationByMeetingId($idMeeting): bool
+    {
+
+        $invitationDeleted = false;
+        $sql = "delete from invitation where id_meeting = :idMeeting";
+
+        try{
+            $stm = parent::getCon()->prepare($sql);
+            $stm->bindParam(":idMeeting", $idMeeting);
+            $stm->execute();
+
+            if($stm->rowCount() > 0) {
+                $invitationDeleted = true;
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $invitationDeleted;
+    }
+
+    public function getInfoGuestByMeetingId($meetingId)
+    {
+        $infoGuest = null;
+        $sql = "select i.id, i.assistance, c.email, u.firstname, u.lastname, m.title, m.star_date, m.star_time, m.place from invitation as i
+    inner join credentials as c on i.id_credentials = c.id
+    inner join user as u on u.id_credential = c.id
+    inner join meeting as m on i.id_meeting = m.id
+    where m.id = ?";
+
+        try{
+            $stm = parent::getCon()->prepare($sql);
+            $stm->bindValue(1, $meetingId);
+
+            if($stm->execute()) {
+                $infoGuest = $stm->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }catch (PDOException $e){
+            echo $e->getMessage();
+        }
+        return $infoGuest;
+    }
 }

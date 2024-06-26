@@ -31,8 +31,8 @@ class InvitationController
 
     public function insertInvitationPost(){
         $infNewInvitation = json_decode(file_get_contents("php://input"), true);
-        $this->invitationService->insertInvitation($infNewInvitation);
-        //$this->view->showResponse($idInvitationInserted, "Invitation", "InvitationInserted");
+        $idsInvitationInserted = $this->invitationService->insertInvitation($infNewInvitation);
+        $this->view->showResponse($idsInvitationInserted, "Invitation", "InvitationInserted");
     }
 
     public function updateInvitationPut(){
@@ -45,6 +45,20 @@ class InvitationController
         $id = $_GET["id"];
         $invitationDeleted = $this->invitationService->deleteInvitation($id);
         $this->view->showResponse($invitationDeleted, "Invitation", "invitationDeleted");
+    }
+
+    public function sendInvitationsToMailPost()
+    {
+        $idInvitations = json_decode(file_get_contents("php://input"), true);
+        $sendMails = $this->invitationService->sendEmailInvitation($idInvitations);
+        $this->view->showResponse($sendMails, "Invitation", "sendMailsInvitations");
+    }
+
+    public function getInvitationsByCredentialsGet()
+    {
+        $email = $_GET["email"];
+        $invitations = $this->invitationService->invitationsByCredentials($email);
+        $this->view->showResponse($invitations, "Invitations", "getInvitations");
     }
 
 }

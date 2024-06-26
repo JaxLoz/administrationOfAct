@@ -68,4 +68,24 @@ class EmailConfig
         return $mailSent;
     }
 
+    public function sendEmailInvitationMeeting($infoInvitationMeeting): bool
+    {
+        $mailSent = false;
+        $arraySearch = ['firstname', 'lastname', 'NameMeeting', 'PlaceMeeting', 'dateMeeting', 'timeMeeting'];
+
+        $this->email->isHTML(true);
+        $this->email->Subject = "invitation to the meeting";
+        $this->email->Body = str_replace($arraySearch, array_values($infoInvitationMeeting), file_get_contents('EmailConfig/HtmlTemplates/formatInvitationMeeting.html'));
+
+        try{
+            $this->email->send();
+            $mailSent = true;
+        }catch (Exception $e){
+            echo $e->getMessage();
+        }
+        $this->email->clearAddresses();
+        $this->email->smtpClose();
+        return $mailSent;
+    }
+
 }

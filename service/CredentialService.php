@@ -69,7 +69,7 @@ class CredentialService
                     $response["token"] = $jwtToken;
                 }else{
                     $response["validateCredentials"] = false;
-                    $response["credentialsOk"] = false;
+                    $response["credentialsOk"] = true;
                     $response["isVerified"] = false;
                     $response["status"] = "Correo electronico no verificado";
                 }

@@ -42,7 +42,7 @@ class InvitationDao extends CrudDao
     inner join credentials as c on i.id_credentials = c.id
     inner join user as u on u.id_credential = c.id
     inner join meeting as m on i.id_meeting = m.id
-    where c.email = ? AND i.assistance = 0 AND m.star_date >= CURDATE() AND m.star_time != TIME(CONVERT_TZ(curtime(),'+00:00', '-05:00'))";
+    where c.email = ? AND i.assistance = 0 AND (m.star_date >= DATE(convert_tz(NOW(), '+00:00', '-05:00')) OR (m.star_date = DATE(convert_tz(NOW(), '+00:00', '-05:00')) AND m.star_time > TIME(CONVERT_TZ(curtime(),'+00:00', '-05:00'))))";
 
         try{
             $stm = parent::getCon()->prepare($sql);
